@@ -11,9 +11,7 @@ namespace Tauri
     public class Game
     {
 
-        private static List<Offset> _offsets;
-        public static int m_fAccuracyPenalty { get; private set; }
-        public static int m_iWeaponID { get; private set; }
+        private static List<Offset> _offsets;        
         public static int m_zoomLevel { get; private set; }
         public static int m_iTeamNum { get; private set; }
         public static int m_flFlashMaxAlpha { get; private set; }
