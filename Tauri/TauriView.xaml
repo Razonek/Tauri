@@ -1,0 +1,317 @@
+﻿<Window x:Class="Tauri.TauriView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tauri"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Height="340" Width="600" Icon="icon.ico">
+    
+    <Window.Resources>
+
+        <Style TargetType="Label" x:Key="WhiteLabelStyle">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        
+        
+        <!-- Menu buttons style -->
+        <Style TargetType="ToggleButton" x:Key="MenuButton">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Name="border"
+                                BorderThickness="1"
+                                BorderBrush="Red"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF00B9FF"/>
+                            </Trigger>                            
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                            <Setter.Value>
+                        <LinearGradientBrush  EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF1E1E1E" Offset="0.79"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Background" Value="#FF1E1E1E"/>                    
+                </Trigger>
+                
+            </Style.Triggers>
+        </Style>
+
+        <!-- Bot functions switches style -->
+        <Style TargetType="ToggleButton" x:Key="SwitchStyle">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Name="border"
+                                BorderThickness="1"                                
+                                CornerRadius="5"     
+                                BorderBrush="Gold"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers> 
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF00B9FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush  EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1E1E1E" Offset="0.69"/>
+                                <GradientStop Color="#FF00C700" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>                        
+                    </Setter>  
+                    
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Background" >
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1E1E1E" Offset="0.69"/>
+                                <GradientStop Color="Red" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>                    
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Togglebutton hotkey style -->
+        <Style TargetType="ToggleButton" x:Key="HotkeyStyle">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Name="border"
+                                BorderThickness="1"                                
+                                CornerRadius="5"                                     
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF00B9FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush  EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF898989" Offset="0.69"/>
+                                <GradientStop Color="#FF00B9FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Background" Value="#FF898989"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid Background="#FF1E1E1E">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+ 
+        <!-- Menu buttons -->
+        <Grid >
+            <StackPanel>
+                <ToggleButton Style="{StaticResource MenuButton}" x:Name="GeneralMenuButton" IsChecked="{Binding Path=isCheckedGeneralMenuButton, Mode=OneWay}" Content="General"/>
+                <ToggleButton Style="{StaticResource MenuButton}" x:Name="TriggerbotMenuButton" IsChecked="{Binding Path=isCheckedTriggerbotMenuButton, Mode=OneWay}" Content="Triggerbot"/>
+                <ToggleButton Style="{StaticResource MenuButton}" x:Name="GlowMenuButton" IsChecked="{Binding Path=isCheckedGlowMenuButton, Mode=OneWay}" Content="Glow"/>
+                <ToggleButton Style="{StaticResource MenuButton}" x:Name="OtherMenuButton" IsChecked="{Binding Path=isCheckedOtherMenuButton, Mode=OneWay}" Content="Other"/>
+                <ToggleButton Style="{StaticResource MenuButton}" x:Name="SettingsMenuButton" IsChecked="{Binding Path=isCheckedSettingsMenuButton, Mode=OneWay}" Content="Settings"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- General Grid View -->
+        <Grid Grid.Column="1" Visibility="{Binding Path=generalGridVisibility, Mode=OneWay}" Background="#FF323232">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <ToggleButton x:Name="TriggerbotSwitch" IsChecked="{Binding Path=isCheckedTriggerbotSwitch, Mode=OneWay}" Content="{Binding Path=triggerbotSwitchContent, Mode=OneWay}" Grid.Row="1" Grid.Column="1" Style="{StaticResource SwitchStyle}"/>
+            <ToggleButton x:Name="GlowSwitch" IsChecked="{Binding Path=isCheckedGlowSwitch, Mode=OneWay}" Content="{Binding Path=glowSwitchContent, Mode=OneWay}" Grid.Row="2" Grid.Column="1" Style="{StaticResource SwitchStyle}"/>
+            <ToggleButton x:Name="BunnyhopSwitch" IsChecked="{Binding Path=isCheckedBunnyhopSwitch, Mode=OneWay}" Content="{Binding Path=bunnyhopSwitchContent, Mode=OneWay}" Grid.Row="3" Grid.Column="1" Style="{StaticResource SwitchStyle}"/>
+            <ToggleButton x:Name="NoFlashSwitch" IsChecked="{Binding Path=isCheckedNoFlashSwitch, Mode=OneWay}" Content="{Binding Path=noFlashSwitchContent, Mode=OneWay}" Grid.Row="4" Grid.Column="1" Style="{StaticResource SwitchStyle}"/>
+
+            <Label Content="Triggerbot" Grid.Row="1" Grid.Column="2" Style="{StaticResource WhiteLabelStyle}"/>
+            <Label Content="Glow" Grid.Row="2" Grid.Column="2" Style="{StaticResource WhiteLabelStyle}"/>
+            <Label Content="Bunnyhop" Grid.Row="3" Grid.Column="2" Style="{StaticResource WhiteLabelStyle}"/>
+            <Label Content="No flash" Grid.Row="4" Grid.Column="2" Style="{StaticResource WhiteLabelStyle}"/>
+
+            <Label x:Name="injectionStatus" Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="6" Style="{StaticResource WhiteLabelStyle}"/>
+        </Grid>
+
+        
+        <!-- Triggerbot Grid View -->
+        <Grid Grid.Column="1" Visibility="{Binding Path=triggerbotGridVisibility, Mode=OneWay}" Background="#FF323232">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="55,20,0,0">
+                <Label Content="Reaction time: " Style="{StaticResource WhiteLabelStyle}" />
+                <Label x:Name="triggerbotReactionTimeLabel" Style="{StaticResource WhiteLabelStyle}"/>
+            </StackPanel>
+            
+            <Slider x:Name="triggerbotReactionTimeSliderValue" Margin="50,50,0,0" HorizontalAlignment="Left" Width="300" Maximum="50" SmallChange="1" LargeChange="5" TickPlacement="BottomRight" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"/>
+            <Label Content="Weapons:" Style="{StaticResource WhiteLabelStyle}" VerticalAlignment="Top" Margin="35,110,0,0"/>
+           
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="40,150,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="triggerbotPistolsUsage" VerticalAlignment="Center"/>
+                    <Label Content="Pistols" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="triggerbotShotgunsUsage" VerticalAlignment="Center"/>
+                    <Label Content="Shotguns" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="triggerbotSMGUsage" VerticalAlignment="Center"/>
+                    <Label Content="Submachine guns" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="220,150,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="triggerbotRiflesUsage" VerticalAlignment="Center"/>
+                    <Label Content="Rifles" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="triggerbotSniperRiflesUsage" VerticalAlignment="Center"/>
+                    <Label Content="Sniper rifles" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>                
+            </StackPanel>
+
+
+        </Grid>
+
+        <!-- Glow Grid View -->
+        <Grid Grid.Column="1" Visibility="{Binding Path=glowGridVisibility, Mode=OneWay}" Background="#FF323232">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="40,15,0,0">
+                <CheckBox x:Name="isCheckedEnemyGlow" VerticalAlignment="Center"/>
+                <Label Content="Glow enemy team" Style="{StaticResource WhiteLabelStyle}"/>
+            </StackPanel>
+            <xctk:ColorCanvas Margin="0,50,0,0" SelectedColor="{Binding Path=enemyGlowColor,Mode=TwoWay}" Width="230" Height="246" Background="White" BorderBrush="{x:Null}" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
+
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="40,15,0,0">
+                <CheckBox x:Name="isCheckedFriendlyGlow" VerticalAlignment="Center"/>
+                <Label Content="Glow friendly team" Style="{StaticResource WhiteLabelStyle}"/>
+            </StackPanel>
+            <xctk:ColorCanvas Margin="0,50,0,0" SelectedColor="{Binding Path=friendlyGlowColor,Mode=TwoWay}" Width="230" Height="246" Background="White" Grid.Column="1" BorderBrush="{x:Null}" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
+
+        </Grid>
+
+        <!-- Other Grid View -->
+        <Grid Grid.Column="1" Visibility="{Binding Path=otherGridVisibility, Mode=OneWay}" Background="#FF323232" >
+            
+            <StackPanel Margin="100,50,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="quickScopeFunctionality" VerticalAlignment="Center" />
+                    <Label Content="Quick Scope" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="changeWeaponAtReload" VerticalAlignment="Center"/>
+                    <Label Content="Change weapon at reloading" Style="{StaticResource WhiteLabelStyle}"/>
+                </StackPanel>                
+            </StackPanel>
+            
+            
+        </Grid>
+
+        <!-- Settings Grid View -->
+        <Grid Grid.Column="1" Visibility="{Binding Path=settingsGridVisibility, Mode=OneWay}" Background="#FF323232" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <ToggleButton x:Name="TriggerbotSetHotkey" IsChecked="{Binding isCheckedTriggerbotHotkeySet, Mode=OneWay}" Content="{Binding Path=triggerbotHotkeyName, Mode=OneWay}" Grid.Row="1" Style="{StaticResource HotkeyStyle}"/>
+            <Label Content="Triggerbot toggle hotkey" Style="{StaticResource WhiteLabelStyle}" Grid.Row="1" Grid.Column="1"/>
+
+            <ToggleButton x:Name="GlowSetHotkey" IsChecked="{Binding isCheckedGlowHotkeySet, Mode=OneWay}" Content="{Binding Path=glowHotkeyName, Mode=OneWay}" Grid.Row="2" Style="{StaticResource HotkeyStyle}"/>
+            <Label Content="Glow toggle hotkey" Style="{StaticResource WhiteLabelStyle}" Grid.Row="2" Grid.Column="1"/>
+
+            <ToggleButton x:Name="NoFlashSetHotkey" IsChecked="{Binding isCheckedNoFlashHotkeySet, Mode=OneWay}" Content="{Binding Path=noFlashHotkeyName, Mode=OneWay}" Grid.Row="3" Style="{StaticResource HotkeyStyle}"/>
+            <Label Content="No flash toggle hotkey" Style="{StaticResource WhiteLabelStyle}" Grid.Row="3" Grid.Column="1"/>
+
+            <ToggleButton x:Name="BunnyhopSetHotkey" IsChecked="{Binding isCheckedBunnyhopHotkeySet, Mode=OneWay}" Content="{Binding Path=bunnyhopHotkeyName, Mode=OneWay}" Grid.Row="4" Style="{StaticResource HotkeyStyle}"/>
+            <Label Content="Bunnyhop hotkey" Style="{StaticResource WhiteLabelStyle}" Grid.Row="4" Grid.Column="1"/>
+
+
+        </Grid>
+
+    </Grid>
+</Window>
